@@ -4,18 +4,20 @@ import {TodoScheme} from "../../interfaces/todoScheme";
 import {addTodo, color, editTodo, fontSize, styles} from "./import";
 import {FC} from "react";
 import {InputModalProps} from "./interface";
-import useTodoState from "../../redux/selector/selector";
+import useTodoState from "../../store/selector/selector";
+import PropTypes from "prop-types";
 
-export const InputModal: FC<InputModalProps>  = ({
-                               isModalVisible,
-                               setIsModalVisible,
-                               todoInputValue,
-                               setTodoInputValue,
-                               todoEditingItem,
-                               setTodoEditingItem,
-                           }) => {
+export const InputModal: FC<InputModalProps> = ({
+                                                    isModalVisible,
+                                                    setIsModalVisible,
+                                                    todoInputValue,
+                                                    setTodoInputValue,
+                                                    todoEditingItem,
+                                                    setTodoEditingItem,
+                                                }) => {
 
-    const { dispatch, state } = useTodoState();
+    const {dispatch, state} = useTodoState();
+
     const handleEditTodo = (editedTodo: TodoScheme) => {
         dispatch(editTodo(editedTodo))
         setTodoEditingItem(null)
@@ -32,6 +34,7 @@ export const InputModal: FC<InputModalProps>  = ({
         setTodoInputValue("")
         setTodoEditingItem(null)
     }
+
     const handleSubmit = () => {
         if (todoInputValue) {
             if (!todoEditingItem) {
@@ -91,5 +94,21 @@ export const InputModal: FC<InputModalProps>  = ({
         </>
     )
 }
+
+InputModal.propTypes = {
+    isModalVisible: PropTypes.bool.isRequired,
+    setIsModalVisible: PropTypes.func.isRequired,
+    todoInputValue: PropTypes.string.isRequired,
+    setTodoInputValue: PropTypes.func.isRequired,
+    todoEditingItem: PropTypes.oneOfType([
+        PropTypes.shape({
+            title: PropTypes.string.isRequired,
+            date: PropTypes.string.isRequired,
+            key: PropTypes.string.isRequired,
+        }),
+        PropTypes.oneOf([null]),
+    ]).isRequired,
+    setTodoEditingItem: PropTypes.func.isRequired,
+};
 
 

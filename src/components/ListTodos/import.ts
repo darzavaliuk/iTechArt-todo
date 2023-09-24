@@ -1,4 +1,4 @@
-export {setTodos} from "../../redux/actions/todoActions";
+export {setTodos} from "../../store/actions/todoActions";
 export {styles} from "./style";
 export {size} from "../../constants/size";
 export {fontSize} from "../../constants/fontSize";

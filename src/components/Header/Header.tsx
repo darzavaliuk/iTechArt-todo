@@ -3,6 +3,7 @@ import EntypoIcon from "react-native-vector-icons/Entypo";
 import React from "react";
 import {HeaderProps} from "./interface";
 import {color, fontSize, styles} from "./import";
+import PropTypes from "prop-types";
 
 export const Header: React.FC<HeaderProps> = ({handleDelete}) => {
     return (
@@ -14,4 +15,8 @@ export const Header: React.FC<HeaderProps> = ({handleDelete}) => {
         </View>
     )
 }
+
+Header.propTypes = {
+    handleDelete: PropTypes.func.isRequired,
+};
 

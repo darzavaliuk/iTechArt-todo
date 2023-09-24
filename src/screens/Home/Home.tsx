@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     ActivityIndicator,
     SafeAreaView,
@@ -7,7 +7,7 @@ import {
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {ListTodos, Header, InputModal, deleteTodos, setTodos, styles, color} from "./import"
 import {TodoScheme} from "../../interfaces/todoScheme";
-import useTodoState from "../../redux/selector/selector";
+import useTodoState from "../../store/selector/selector";
 
 function Home() {
     const {dispatch, state} = useTodoState();
@@ -35,9 +35,9 @@ function Home() {
         }).catch((error) => console.log(error))
     }
 
-    if (!ready) {
+    useEffect(() => {
         loadTodos()
-    }
+    }, [])
 
     return (
         <SafeAreaView style={styles.sectionContainer}>
@@ -56,7 +56,7 @@ function Home() {
                                 setTodoEditingItem={setTodoEditingItem}
                     />
                 </>) :
-                <ActivityIndicator size="large" color={color.BLACK}/>
+                <ActivityIndicator size="large" color={color.BLACK} style={{flex: 1}}/>
             }
 
         </SafeAreaView>

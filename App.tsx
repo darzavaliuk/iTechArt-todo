@@ -4,12 +4,12 @@ import {
 } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from "@react-navigation/stack";
-import {Loader} from "./components/Loader/Loader";
-import {Home} from "./components/Home/";
+import {Loader} from "./src/screens/Loader/Loader";
+import {Home} from "./src/screens/Home/";
 import {Provider} from "react-redux";
-import {rootReducer} from "./redux/rootReducer";
+import {rootReducer} from "./src/store/rootReducer";
 import {applyMiddleware, createStore} from "redux";
-import saveTodoMiddleware from "./redux/reducers/todoReducer/middleWare";
+import saveTodoMiddleware from "./src/store/reducers/todoReducer/middleWare";
 
 function App() {
     const store = createStore(rootReducer, applyMiddleware(saveTodoMiddleware));

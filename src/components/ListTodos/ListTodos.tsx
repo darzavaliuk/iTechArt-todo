@@ -3,9 +3,10 @@ import {Text, TouchableHighlight, View} from "react-native";
 import EntypoIcon from 'react-native-vector-icons/Entypo'
 import React, {useState} from "react";
 import {ListTodosProps} from "./interface";
-import {color, fontSize, setTodos, size, styles} from "./import";
-import useTodoState from "../../redux/selector/selector";
-import {completeTodo} from "../../redux/actions/todoActions";
+import {color, fontSize, size, styles} from "./import";
+import useTodoState from "../../store/selector/selector";
+import {completeTodo} from "../../store/actions/todoActions";
+import PropTypes from "prop-types";
 
 export const ListTodos: React.FC<ListTodosProps> = ({handleEdit}) => {
     const [swipedRow, setSwipedRow] = useState<string | null>(null);
@@ -63,4 +64,8 @@ export const ListTodos: React.FC<ListTodosProps> = ({handleEdit}) => {
         </View>
     )
 }
+
+ListTodos.propTypes = {
+    handleEdit: PropTypes.func.isRequired,
+};
 

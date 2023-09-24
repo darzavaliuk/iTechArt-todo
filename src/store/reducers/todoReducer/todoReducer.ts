@@ -15,7 +15,6 @@ export const todoReducer = (state = initialState, action: any) => {
     switch (action.type) {
 
 
-
         case DELETE_TODOS:
             return {
                 ...state,
