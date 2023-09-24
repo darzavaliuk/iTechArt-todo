@@ -1,11 +1,9 @@
 import {StyleSheet} from "react-native";
 import {color} from "../../constants/color";
+import {fontSize} from "./import";
 
 export const styles = StyleSheet.create({
     container: {
-        // width: "100%",
-        // height: "100%",
-        // overflow: "scroll",
         flex: 1
     },
     list: {
@@ -36,8 +34,6 @@ export const styles = StyleSheet.create({
         padding: 5,
     },
     deleteButton: {
-        // resizeMode: "cover",
-        // flex: 1,
         backgroundColor: color.GREY,
         margin: 10,
         borderRadius: 10,
@@ -45,7 +41,7 @@ export const styles = StyleSheet.create({
     },
     noTodoText: {
         color: color.BLACK,
-        fontSize: 20,
+        fontSize: fontSize.NORMAL,
         textAlign: "center"
     }
 })
