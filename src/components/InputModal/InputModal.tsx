@@ -1,8 +1,8 @@
-import {Modal, TextInput, TouchableOpacity, View} from "react-native";
+import {Animated, Easing, Modal, TextInput, TouchableOpacity, View} from "react-native";
 import EntypoIcon from 'react-native-vector-icons/Entypo'
 import {TodoScheme} from "../../interfaces/todoScheme";
 import {addTodo, color, editTodo, fontSize, styles} from "./import";
-import {FC} from "react";
+import {FC, useEffect, useState} from "react";
 import {InputModalProps} from "./interface";
 import useTodoState from "../../store/selector/selector";
 import PropTypes from "prop-types";
@@ -35,6 +35,37 @@ export const InputModal: FC<InputModalProps> = ({
         setTodoEditingItem(null)
     }
 
+    const [animation] = useState(new Animated.Value(0));
+
+    useEffect(() => {
+        if (isModalVisible) {
+            Animated.timing(animation, {
+                toValue: 1,
+                duration: 500,
+                easing: Easing.ease,
+                useNativeDriver: true,
+            }).start();
+        } else {
+            Animated.timing(animation, {
+                toValue: 0,
+                duration: 500,
+                easing: Easing.ease,
+                useNativeDriver: true,
+            }).start();
+        }
+    }, [isModalVisible]);
+
+    const modalStyle = {
+        transform: [
+            {
+                translateY: animation.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [300, 0],
+                }),
+            },
+        ],
+    };
+
     const handleSubmit = () => {
         if (todoInputValue) {
             if (!todoEditingItem) {
@@ -66,7 +97,7 @@ export const InputModal: FC<InputModalProps> = ({
                 visible={isModalVisible}
                 onRequestClose={handleClose}>
                 <View style={styles.modalContainer}>
-                    <View style={styles.modalView}>
+                    <Animated.View style={[styles.modalView, modalStyle]}>
                         <View style={styles.icon}>
                             <EntypoIcon name="edit" size={fontSize.BIG} color={color.BLACK}/>
                         </View>
@@ -88,7 +119,7 @@ export const InputModal: FC<InputModalProps> = ({
                                 <EntypoIcon name="check" size={fontSize.VERY_BIG} color={color.WHITE}/>
                             </TouchableOpacity>
                         </View>
-                    </View>
+                    </Animated.View>
                 </View>
             </Modal>
         </>
