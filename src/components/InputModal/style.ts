@@ -55,5 +55,21 @@ export const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         alignSelf: "center",
-    }
+    },
+    modalActionClearButton: {
+        width: size.modalWidth,
+        height: size.modalHeight,
+        // backgroundColor: color.BLACK,
+        borderRadius: 50,
+        justifyContent: "center",
+        alignItems: "center",
+        alignSelf: "flex-end",
+        marginTop: -55,
+    },
+    clearButton: {
+        position: 'absolute',
+        right: 10,
+        top: 10,
+        opacity: 0, // Изначально кнопка должна быть невидимой
+    },
 })

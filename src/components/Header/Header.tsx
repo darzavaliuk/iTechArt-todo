@@ -15,8 +15,3 @@ export const Header: React.FC<HeaderProps> = ({handleDelete}) => {
         </View>
     )
 }
-
-Header.propTypes = {
-    handleDelete: PropTypes.func.isRequired,
-};
-

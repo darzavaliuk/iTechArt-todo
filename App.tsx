@@ -10,10 +10,10 @@ import {Provider} from "react-redux";
 import {rootReducer} from "./src/store/rootReducer";
 import {applyMiddleware, createStore} from "redux";
 import saveTodoMiddleware from "./src/store/reducers/todoReducer/middleWare";
+const Stack = createStackNavigator();
 
 function App() {
     const store = createStore(rootReducer, applyMiddleware(saveTodoMiddleware));
-    const Stack = createStackNavigator();
 
     return (
         <Provider store={store}>
